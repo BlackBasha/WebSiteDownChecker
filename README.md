@@ -70,3 +70,9 @@ Inside the TargetAppController you will notice that I control the information of
 IJob job = new HeartBeatJob(item, \_appLogService, \_emailNotifier);
 
 JobManager.AddJob(job, s =\&gt; s.WithName(item.Id.ToString()).ToRunNow().AndEvery(item.CheckInterval).Minutes());
+
+**How the application works:**
+
+When you start the app you have to register with a new user lese you can not access that TargetApp page to do the CURD operations.
+
+After login you will see the main TargetApp List after adding the website information that you want immediately the job will start according to the check interval that you specified. After that the job we try to access the website if there is a problem to access that app a notification as a mail will be send to the RappitMq message queue, after the message received an event trigger happen and a consumer will handle it and in our case here it is a mail sender the mail sender will get the message and send a mail to a receiver.
