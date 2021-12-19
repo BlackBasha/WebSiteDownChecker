@@ -15,10 +15,6 @@ namespace Business.Jobs
     {
         private IComponentContext _context;
 
-        public HeartBeatJobRegistry()
-        {
-
-        }
         public HeartBeatJobRegistry(IComponentContext context)
         {
             _context = context;
