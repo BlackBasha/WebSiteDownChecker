@@ -71,7 +71,7 @@ Inside the TargetAppController you will notice that I control the information of
 
 IJob job = new HeartBeatJob(item, \_appLogService, \_emailNotifier);
 
-JobManager.AddJob(job, s =\&gt; s.WithName(item.Id.ToString()).ToRunNow().AndEvery(item.CheckInterval).Minutes());
+JobManager.AddJob(job, s => s.WithName(item.Id.ToString()).ToRunNow().AndEvery(item.CheckInterval).Minutes());
 
 **How the application works:**
 
