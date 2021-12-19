@@ -82,7 +82,7 @@ After login you will see the main TargetApp List after adding the website inform
 **Notes** :
 
 - You can easily add new notifications type to the application, we are using dependency injection, so you can apply that by do inheritance form the base classes and interfaces:
-  - interfaceINotifier\&lt;T\&gt;: the main notification interface so for example you can implement SMS notification by using it for example I created EmailNotifier class
+  - interfaceINotifier: the main notification interface so for example you can implement SMS notification by using it for example I created EmailNotifier class
   - class Message: this class represents the main message that could be used to send content to receiver so you can inherit form it .
 - As we are using Pub/Sub pattern and message queue we can define different receivers and different senders also different queues as we need to extend the performance for example and this make the structure more dynamic.
 - All errors and exceptions are logged to local file and you can find that form the log4net configuration file
