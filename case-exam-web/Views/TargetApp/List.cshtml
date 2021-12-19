@@ -1,0 +1,40 @@
+﻿@model TargetAppListViewModel
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>App Name</th>
+            <th>Url</th>
+            <th>Check Interval</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TargetApps) {
+        <tr>
+            <td>
+                @item.AppName
+            </td>
+            <td>
+                @item.Url
+            </td>
+            <td>
+                @item.CheckInterval
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
+                @Html.ActionLink("View Logs", "List", "AppLog", new { targetAppId = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

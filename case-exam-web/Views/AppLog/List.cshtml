@@ -1,0 +1,33 @@
+﻿@model AppLogViewModel
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Insert Date</th>
+            <th>Response Number</th>
+            <th>Log Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Applogs)
+        {
+        <tr>
+            <td>
+                @item.InsertDate
+            </td>
+            <td>
+                @item.ResponseNumber
+            </td>
+            <td>
+                @item.LogDetails
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
