@@ -9,7 +9,7 @@ WebSite Down Checker
 - Log4net
 - Polly
 - RabbitMq
--
+-Automapper
 
 **How to start the application:**
 
