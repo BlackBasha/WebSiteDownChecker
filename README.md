@@ -23,7 +23,7 @@ this command will download the image and start the container , the default confi
 
 [http://localhost:15672/#/queues](http://localhost:15672/#/queues)
 
-with the default user name and password: guest:guest. After login you have to create a new queue called &quot;[**EmailMessage**](http://localhost:15672/#/queues/%2F/EmailMessage)&quot;.
+with the default user name and password: guest:guest. After login you have to create a new queue called &quot;[**Message**](http://localhost:15672/#/queues/%2F/Message)&quot;.
 
 For more information please visit this link : [https://hub.docker.com/\_/rabbitmq?tab=description](https://hub.docker.com/_/rabbitmq?tab=description).
 
