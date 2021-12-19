@@ -1,15 +1,16 @@
-WebSite Down Checker
-====================
-**Used technology:**
+**WebSite Down Checker**
+
+**Used technology and Libraries:**
 
 - Asp MVC Core 5.0
 - Entity FrameWrok 5.0
-- Autofac
+- Autofac 
 - Fluent Scheduler
 - Log4net
-- Polly
+- Polly 
 - RabbitMq
--Automapper
+- Automapper.
+- SQL Server
 
 **How to start the application:**
 
@@ -19,17 +20,19 @@ The command will create the database with the name TestCase, inside it there are
 
 I used dockers image for the rabbetMq so to get the image you have to run this command:
 
-**docker run -d --hostname my-rabbit --name my-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management**
+**docker run -d --hostname my-rabbit --name my-rabbit -p 15672:15672 -p  5672:5672 rabbitmq:3-management**
 
-this command will download the image and start the container , the default configuration shows that the amqpport is 5672 and the http port is 15672 so you can visit the app form the browser:
+this command will download the image and start the container , the default configuration shows that the amqp port is 5672 and the http port is 15672 so you can visit the app form the browser:
 
-[http://localhost:15672/#/queues](http://localhost:15672/#/queues)
+<http://localhost:15672/#/queues>
 
-with the default user name and password: guest:guest. After login you have to create a new queue called &quot;[**Message**](http://localhost:15672/#/queues/%2F/EmailMessage)&quot;.
+with the default user name and password: guest:guest. After login you have to create a new queue called “[**Message**](http://localhost:15672/#/queues/%2F/EmailMessage)”.
 
-For more information please visit this link : [https://hub.docker.com/\_/rabbitmq?tab=description](https://hub.docker.com/_/rabbitmq?tab=description).
+For more information please visit this link : <https://hub.docker.com/_/rabbitmq?tab=description>.
 
 In this class EmailNotifierHandler you have to set your Email configurations.
+
+
 
 **The structure of the app:**
 
@@ -55,23 +58,23 @@ Enitities: contains that base entity classes.
 
 EventBus: contains the main structure for the Event Driven pattern and the RabbetMQ base classes.
 
-HostServices: contains the main extension methods of the service Configuration of ASP MVC startup file.
+HostServices: contains the main extension methods of the service Configuration of ASP MVC startup file. 
 
 Utitilies: contains the main business rules class that we use inside the services to handle our own business rules inside code.
 
-Interceptors: contains the main interceptors
+Interceptors: contains the main interceptors 
 
 Results: contains the base classes that we user to return our data from the controllers, so all the return types will be in standard form.
 
-**WebApplication project:** is a ASP MVC application with base login logout register operations and a base UI for CRUD operation of the Target Applications and the log of each app.
+**WebApplication project:** is a ASP MVC application with base login logout register operations and a base UI for CRUD operation of  the Target Applications and the log of each app.
 
 Inside the TargetAppController you will notice that I control the information of the TargetApp object a nd according to the operation type if it is create or update or delete I change the job information inside the jobManager and the scheduler of the fluent Scheduler Dll.
 
 //add job schedual
 
-IJob job = new HeartBeatJob(item, \_appLogService, \_emailNotifier);
+`            `IJob job = new HeartBeatJob(item, \_appLogService, \_emailNotifier);
 
-JobManager.AddJob(job, s => s.WithName(item.Id.ToString()).ToRunNow().AndEvery(item.CheckInterval).Minutes());
+`            `JobManager.AddJob(job, s => s.WithName(item.Id.ToString()).ToRunNow().AndEvery(item.CheckInterval).Minutes());
 
 **How the application works:**
 
@@ -79,10 +82,22 @@ When you start the app you have to register with a new user lese you can not acc
 
 After login you will see the main TargetApp List after adding the website information that you want immediately the job will start according to the check interval that you specified. After that the job we try to access the website if there is a problem to access that app a notification as a mail will be send to the RappitMq message queue, after the message received an event trigger happen and a consumer will handle it and in our case here it is a mail sender the mail sender will get the message and send a mail to a receiver.
 
-**Notes** :
+**Used Patterns and structure:**
 
-- You can easily add new notifications type to the application, we are using dependency injection, so you can apply that by do inheritance form the base classes and interfaces:
-  - interfaceINotifier: the main notification interface so for example you can implement SMS notification by using it for example I created EmailNotifier class
+- Repository 
+- Aspect oriented
+- IOC
+- Message queueing
+- Event Driven
+- Centralized logging 
+- Code first EF
+
+**Notes**:
+
+- You can easily add new notifications type to the application, we are using dependency injection, so you can apply that by do inheritance  form the base classes and interfaces:
+  - interface INotifier<T>: the main notification interface so for example you can implement SMS notification by using it for example I created EmailNotifier class
   - class Message: this class represents the main message that could be used to send content to receiver so you can inherit form it .
 - As we are using Pub/Sub pattern and message queue we can define different receivers and different senders also different queues as we need to extend the performance for example and this make the structure more dynamic.
 - All errors and exceptions are logged to local file and you can find that form the log4net configuration file
+
+
