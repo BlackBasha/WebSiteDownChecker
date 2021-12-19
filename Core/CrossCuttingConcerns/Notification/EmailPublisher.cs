@@ -16,7 +16,7 @@ namespace Core.Notification
             _logger = logger;
         }
 
-        public void SendEmail(EmailMessage emailMessage)
+        public void SendEmail(Message emailMessage)
         {
             try
             {

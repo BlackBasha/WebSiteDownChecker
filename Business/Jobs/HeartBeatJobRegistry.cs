@@ -24,7 +24,7 @@ namespace Business.Jobs
             _context = context;
             var result= _context.Resolve<ITargetAppService>();
             var applogService = _context.Resolve<IAppLogService>();
-            var emailNotifier = _context.Resolve<INotifier<EmailMessage>>();
+            var emailNotifier = _context.Resolve<INotifier<Message>>();
             var targetApps=result.GetAll();
             foreach (var item in targetApps.Data)
             {

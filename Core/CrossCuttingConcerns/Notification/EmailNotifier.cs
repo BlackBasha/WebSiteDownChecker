@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Core.Notification
 {
-    public class EmailNotifier : INotifier<EmailMessage>
+    public class EmailNotifier : INotifier<Message>
     {
-        public void Notify(EmailMessage data)
+        public void Notify(Message data)
         {
             using (var eventBus = new EventBusRabbitMQ())
             {

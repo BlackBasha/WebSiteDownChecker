@@ -16,7 +16,7 @@ namespace Core.HostServices
     {
         private IConfiguration _configuration;
         private ILogger _logger;
-        public IIntegrationEventHandler<EmailMessage> emailMessageEvent { get; set; }
+        public IIntegrationEventHandler<Message> emailMessageEvent { get; set; }
 
         public ConsumeRabbitMqEmailHostService(IConfiguration configuration, ILogger logger)
         {
@@ -28,7 +28,7 @@ namespace Core.HostServices
         {
             IEventBus eventBus = new EventBusRabbitMQ();
             emailMessageEvent = new EmailNotifierHandler();
-            eventBus.Subscribe<EmailMessage, EmailNotifierHandler>();
+            eventBus.Subscribe<Message, EmailNotifierHandler>();
             return Task.FromResult(emailMessageEvent);
         }
 

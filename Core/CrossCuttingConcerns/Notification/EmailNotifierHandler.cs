@@ -13,14 +13,14 @@ using System.Threading.Tasks;
 
 namespace Core.Notification
 {
-    public class EmailNotifierHandler :  IIntegrationEventHandler<EmailMessage>
+    public class EmailNotifierHandler :  IIntegrationEventHandler<Message>
     {
        
         public EmailNotifierHandler()
         {
            
         }
-        public async Task Handle(EmailMessage @event)
+        public async Task Handle(Message @event)
         {
             try
             {

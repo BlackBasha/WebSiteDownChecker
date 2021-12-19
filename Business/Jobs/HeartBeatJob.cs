@@ -18,9 +18,9 @@ namespace Business.Jobs
 
         private IAppLogService _applogService;
 
-        private INotifier<EmailMessage> _emailNotifier;
+        private INotifier<Message> _emailNotifier;
 
-        public HeartBeatJob(TargetApp targetApp, IAppLogService applogService, INotifier<EmailMessage> emailNotifier)
+        public HeartBeatJob(TargetApp targetApp, IAppLogService applogService, INotifier<Message> emailNotifier)
         {
             _targetApp = targetApp;
             _applogService = applogService;
@@ -40,7 +40,7 @@ namespace Business.Jobs
                     {
                         _applogService.Add(new AppLog { InsertDate = DateTime.Now, LogDetails = await response.Content.ReadAsStringAsync(), ResponseNumber = (int)response.StatusCode, TargetAppId = _targetApp.Id });
                         //send mail notification
-                        _emailNotifier.Notify(new EmailMessage()
+                        _emailNotifier.Notify(new Message()
                         {
                             Body = "Error in checking this website " + _targetApp.AppName + " with this url:" + _targetApp.Url + "the response code is: " + (int)response.StatusCode + " and the error message is:" + await response.Content.ReadAsStringAsync(),
                             FromAddress = "thelordmb@gmail.com",
@@ -58,7 +58,7 @@ namespace Business.Jobs
             catch (Exception ex)
             {
 
-                _emailNotifier.Notify(new EmailMessage()
+                _emailNotifier.Notify(new Message()
                 {
                     Body = "Error in checking this website " +
                                 _targetApp.AppName + " with this url:" +

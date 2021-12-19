@@ -21,7 +21,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<TargetAppService>().As<ITargetAppService>();
             builder.RegisterType<TargetAppRepository>().As<ITargetAppRepository>();
 
-            builder.RegisterType<EmailNotifier>().As<INotifier<EmailMessage>>();
+            builder.RegisterType<EmailNotifier>().As<INotifier<Message>>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

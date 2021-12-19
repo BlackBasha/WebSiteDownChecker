@@ -22,9 +22,9 @@ namespace case_exam_web.Controllers
         private ITargetAppService _targetAppService;
         private readonly IMapper _mapper;
         private IAppLogService _appLogService;
-        private INotifier<EmailMessage> _emailNotifier;
+        private INotifier<Message> _emailNotifier;
 
-        public TargetAppController(ITargetAppService targetAppService, IMapper mapper, IAppLogService appLogService, INotifier<EmailMessage> emailNotifier)
+        public TargetAppController(ITargetAppService targetAppService, IMapper mapper, IAppLogService appLogService, INotifier<Message> emailNotifier)
         {
             _targetAppService = targetAppService;
             _mapper = mapper;
